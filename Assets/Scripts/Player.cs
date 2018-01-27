@@ -6,7 +6,6 @@ public class Player : OriginalObject<LocationData>
 {
     protected override void AddData()
     {
-        transform.position += new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         EnqueueData(new LocationData(transform.position, transform.rotation));
     }
 }

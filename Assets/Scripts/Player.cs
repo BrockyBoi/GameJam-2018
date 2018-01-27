@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Player : OriginalObject<LocationData>
 {
+	public static Player Instance{get; private set;}
+	void Awake()
+	{
+		Instance = this;
+	}
     protected override void AddData()
     {
         EnqueueData(new LocationData(transform.position, transform.rotation));

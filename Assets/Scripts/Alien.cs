@@ -8,7 +8,6 @@ public class Alien : MonoBehaviour
 
     NavMeshAgent agent;
 	Rigidbody rb;
-    public Transform thing;
     enum States { Searching, InSight, Running, }
     States state = States.Searching;
 

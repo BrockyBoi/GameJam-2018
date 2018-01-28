@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject menu;
     bool paused = false;
     bool playerDead = false;
+    public static event DelegateManager.EmptyVoid EOnNoLongerPaused, EOnPause;
 
     public static bool Paused
     {
@@ -24,11 +25,15 @@ public class PauseMenu : MonoBehaviour
             {
                 Instance.menu.SetActive(true);
                 Time.timeScale = 0;
+                if(EOnPause != null)
+                    EOnPause();
             }
             else
             {
                 Instance.menu.SetActive(false);
                 Time.timeScale = 1;
+                if(EOnNoLongerPaused != null)
+                    EOnNoLongerPaused();
             }
         }
     }

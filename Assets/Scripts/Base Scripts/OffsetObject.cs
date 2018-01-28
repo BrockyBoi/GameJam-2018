@@ -4,25 +4,46 @@ using UnityEngine;
 
 public abstract class OffsetObject<T, R> : MonoBehaviour where T : OriginalObject<R>
 {
-	#region Variables
-	protected Vector3 MAP_OFFSET;
-    [SerializeField]
-    [Range(1, 10)]
-    int secondsOff = 5;
+    #region Variables
+    protected Vector3 MAP_OFFSET;
+
+    public static int SecondsOff = 3;
 
     [SerializeField]
     T original;
 
     bool isReady = false;
-	#endregion
+    #endregion
+
+    protected void OnEnable()
+    {
+        PauseMenu.EOnNoLongerPaused += WaitForData;
+        PauseMenu.EOnPause += StopWait;
+    }
+
+    protected void OnDisable()
+    {
+        PauseMenu.EOnNoLongerPaused -= WaitForData;
+        PauseMenu.EOnPause -= StopWait;
+    }
 
     protected void Start()
     {
         MAP_OFFSET = transform.position - original.transform.position;
-        Invoke("SetIsReady", secondsOff);
+        WaitForData();
     }
 
-    protected void Update()
+    protected void WaitForData()
+    {
+        Invoke("SetIsReady", SecondsOff);
+    }
+
+    protected void StopWait()
+    {
+        CancelInvoke("SetIsReady");
+    }
+
+    protected void FixedUpdate()
     {
         if (!isReady)
             return;

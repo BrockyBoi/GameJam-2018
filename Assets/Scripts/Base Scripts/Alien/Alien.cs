@@ -80,10 +80,9 @@ public class Alien : OriginalObject<LocationData>
         agent.SetDestination(currentNode.transform.position);
     }
 
-    protected override void Update()
+    void LateUpdate()
     {
         DetermineAction();
-        base.Update();
     }
 
     void DetermineAction()
@@ -253,5 +252,14 @@ public class Alien : OriginalObject<LocationData>
     protected override void AddData()
     {
         EnqueueData(new LocationData(transform.position, transform.rotation));
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            Player.Instance.KillPlayer();
+            state = States.PlayerDead;
+        }
     }
 }

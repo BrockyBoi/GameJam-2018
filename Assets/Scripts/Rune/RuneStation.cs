@@ -1,18 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RuneStation : MonoBehaviour {
 
 	public bool correctButtonPressed = false;
-	static int numStations = 0;
+	public static int numStations = 0;
 	int stationIndex;
 
 	public enum Colors{Red, Blue, NeonGreen, Purple}
 
 	Colors correctColor;
-
-	public Transform runeSpot;
 
 	void Awake() {
 		stationIndex = numStations++;
@@ -20,7 +19,11 @@ public class RuneStation : MonoBehaviour {
 
 	void Start()
 	{
+		// try {
 		correctColor = RuneManager.RuneKey[stationIndex];
+		// } catch (Exception e) {
+		// 	Debug.Log(" i fjck up "+stationIndex);
+		// }
 		GameObject rune = Instantiate(Resources.Load("Runes/Rune " + (stationIndex + 1)) as GameObject, Vector3.zero, Quaternion.identity);
 		Vector3 scale = rune.transform.localScale;
 		rune.transform.SetParent(transform);

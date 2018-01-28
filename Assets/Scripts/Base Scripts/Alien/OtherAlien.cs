@@ -5,7 +5,8 @@ using UnityEngine;
 public class OtherAlien : OffsetObject<Alien, LocationData> {
     protected override void SetData(LocationData data)
     {
-        transform.position = data.loc + MAP_OFFSET;
+        Vector3 newPos = data.loc + MAP_OFFSET;
+        transform.position = new Vector3(newPos.x, transform.position.y, newPos.z);
         transform.rotation = data.quat;
     }
 }

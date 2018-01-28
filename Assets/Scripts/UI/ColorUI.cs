@@ -9,7 +9,7 @@ public class ColorUI : MonoBehaviour {
 	int index;
 	// Use this for initialization
 	void Start () {
-		GetComponent<Image>().material = Resources.Load("Materials/Colors/"+RuneManager.RuneKey[index].ToString()) as Material;
+		GetComponent<Image>().material = Resources.Load("Materials/Colors/"+RuneManager.RuneKey[index].ToString()+"UI") as Material;
 	}
 	
 	// Update is called once per frame

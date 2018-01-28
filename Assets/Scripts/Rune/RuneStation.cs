@@ -15,8 +15,7 @@ public class RuneStation : MonoBehaviour {
 	public Transform runeSpot;
 
 	void Awake() {
-		stationIndex = numStations;
-		numStations ++;
+		stationIndex = numStations++;
 	}
 
 	void Start()

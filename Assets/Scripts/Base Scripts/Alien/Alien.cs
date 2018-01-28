@@ -18,12 +18,14 @@ public class Alien : OriginalObject<LocationData>
     float acceptableNodeRange = .75f;
 
     [SerializeField]
-    [Range(5, 50)]
-    int searchSpeed = 5;
+    [Range(1, 20)]
+    float searchSpeed = 2.5f;
 
     [SerializeField]
-    [Range(5, 50)]
-    int runSpeed = 15;
+    [Range(1, 20)]
+    float runSpeed = 7.5f;
+
+    int fov = 60;
     bool InRangeOfNode
     {
         get
@@ -36,7 +38,7 @@ public class Alien : OriginalObject<LocationData>
     {
         get
         {
-            return Vector3.Distance(transform.position, Player.Instance.transform.position) <= .5f;
+            return Vector3.Distance(transform.position, Player.Instance.transform.position) <= 1.5f;
         }
     }
 
@@ -84,6 +86,7 @@ public class Alien : OriginalObject<LocationData>
 
                     if (InRangeOfPlayer)
                     {
+                        Debug.Log("In range of player");
                         state = States.PlayerDead;
                         Player.Instance.KillPlayer();
                         return;
@@ -114,6 +117,7 @@ public class Alien : OriginalObject<LocationData>
                         agent.speed = searchSpeed;
                         timeNotSeenPlayer = 0;
                         lastTimePlayedAudio = 0;
+                        fov = 60;
                     }
                     break;
                 }
@@ -126,19 +130,19 @@ public class Alien : OriginalObject<LocationData>
 
                     if (InRangeOfNode)
                     {
-                        PickNode();
+                        Invoke("PickNode", 3);
                     }
 
                     if (PlayerInSight())
                     {
-                        if (!audio.isPlaying)
-                        {
-                            audio.PlayOneShot(dunDunClip);
-                        }
+                        audio.Stop();
+                        audio.PlayOneShot(dunDunClip);
+
 
                         currentNode = null;
                         state = States.PlayerInSight;
                         agent.speed = runSpeed;
+                        fov = 75;
                     }
 
                     lastTimePlayedAudio += Time.deltaTime;
@@ -169,7 +173,7 @@ public class Alien : OriginalObject<LocationData>
         float angle = Vector3.Angle(transform.forward, playerPos - transform.position);
         Debug.DrawLine(transform.position, transform.position + transform.forward, Color.red);
 
-        if (angle <= 60)
+        if (angle <= fov)
         {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, playerPos - transform.position, out hit))

@@ -3,41 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonController : MonoBehaviour {
+public class ButtonController : MonoBehaviour
+{
 
-	CanvasGroup group;
-	void OnEnable()
-	{
-		Player.EOnPlayerDeath += ShowDeathScreen;
-	}
+    CanvasGroup group;
+    public List<Button> menuButtons;
+    void OnEnable()
+    {
+        Player.EOnPlayerDeath += ShowDeathScreen;
+    }
 
-	void Awake() {
-		group = GetComponent<CanvasGroup>();
-		group.alpha = 0;
-	}
+    void Awake()
+    {
+        group = GetComponent<CanvasGroup>();
+        group.alpha = 0;
 
-	void OnDisable()
-	{
-		Player.EOnPlayerDeath -= ShowDeathScreen;
-	}
+        foreach (var b in menuButtons)
+            b.gameObject.SetActive(false);
+    }
 
-	void ShowDeathScreen()
-	{
-		StartCoroutine(FadeToBlack());
-	}
+    void OnDisable()
+    {
+        Player.EOnPlayerDeath -= ShowDeathScreen;
+    }
 
-	IEnumerator FadeToBlack() {
-		while(group.alpha < 1.0f) {
-			group.alpha += 0.01f;
-			yield return null;
-		}
-	}
+    void ShowDeathScreen()
+    {
+        StartCoroutine(FadeToBlack());
+    }
 
-	public void Reset() {
-		UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-	}
+    IEnumerator FadeToBlack()
+    {
+        foreach (var b in menuButtons)
+            b.gameObject.SetActive(true);
+			
+        while (group.alpha < 1.0f)
+        {
+            group.alpha += 0.01f;
+            yield return null;
+        }
+    }
 
-	public void Exit() {
-		Application.Quit();
-	}
+    public void Reset()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }

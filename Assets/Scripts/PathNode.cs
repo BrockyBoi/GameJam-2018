@@ -30,4 +30,9 @@ public class PathNode : MonoBehaviour
 		transform.SetParent(ParentTransform);
     }
 
+	void OnDisable()
+	{
+		nodes.Clear();
+	}
+
 }

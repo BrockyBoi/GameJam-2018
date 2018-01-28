@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
         private set
         {
             Instance.paused = value;
+            Cursor.visible = value;
 
             if (value)
             {
@@ -30,6 +31,7 @@ public class PauseMenu : MonoBehaviour
 	void Awake()
 	{
 		Instance = this;
+        Cursor.visible = false;
 	}
 
     void Update()

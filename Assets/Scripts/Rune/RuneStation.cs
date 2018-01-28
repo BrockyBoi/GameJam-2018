@@ -19,7 +19,7 @@ public class RuneStation : MonoBehaviour {
 
 	void Start()
 	{
-		correctColor = RuneManager.runeKey[stationIndex];
+		correctColor = RuneManager.RuneKey[stationIndex];
 		// assign correct material by asking RuneManager which rune to use
 		runeMat = Resources.Load ("Materials/Runes/Rune"+stationIndex) as Material;
 		Debug.Log(runeMat);

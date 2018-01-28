@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : OriginalObject<LocationData>
 {
 	public static Player Instance{get; private set;}
+	public static event DelegateManager.EmptyVoid EOnPlayerDeath;
 	void Awake()
 	{
 		Instance = this;
@@ -13,6 +14,14 @@ public class Player : OriginalObject<LocationData>
     {
         EnqueueData(new LocationData(transform.position, transform.rotation));
     }
+
+	public void KillPlayer()
+	{
+		if(EOnPlayerDeath != null)
+		{
+			EOnPlayerDeath();
+		}
+	}
 }
 
 public struct LocationData

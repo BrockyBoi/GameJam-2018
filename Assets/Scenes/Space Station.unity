@@ -100,7 +100,7 @@ NavMeshSettings:
     agentTypeID: 0
     agentRadius: 0.47
     agentHeight: 1.66
-    agentSlope: 38
+    agentSlope: 29.6
     agentClimb: 0.58
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
@@ -1334,7 +1334,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfba663198e1b44898fb48f89480a86b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  group: {fileID: 0}
 --- !u!225 &1194729594
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1395,26 +1394,6 @@ Prefab:
       propertyPath: acceptableNodeRange
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 82980366452818404, guid: ba0d4d43d1304419aadcb5238b5477d9,
-        type: 2}
-      propertyPath: spreadCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114326837917300832, guid: ba0d4d43d1304419aadcb5238b5477d9,
-        type: 2}
-      propertyPath: roarClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 0c6f0bde34651cc49a45b2e9a0ef8a1c, type: 3}
-    - target: {fileID: 114326837917300832, guid: ba0d4d43d1304419aadcb5238b5477d9,
-        type: 2}
-      propertyPath: dunDunClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 20a7954734e33bf44a43a4d07c0775cd, type: 3}
-    - target: {fileID: 114326837917300832, guid: ba0d4d43d1304419aadcb5238b5477d9,
-        type: 2}
-      propertyPath: gargleClip
-      value: 
-      objectReference: {fileID: 8300000, guid: c0a6d200290ae4d4c9e364903be2d942, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ba0d4d43d1304419aadcb5238b5477d9, type: 2}
   m_IsPrefabParent: 0

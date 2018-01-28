@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-	static PauseMenu Instance{get;set;}
+    static PauseMenu Instance { get; set; }
     public GameObject menu;
-    bool paused;
+    bool paused = false;
+    bool playerDead = false;
+
     public static bool Paused
     {
         get { return Instance.paused; }
         private set
         {
+            if (Instance.playerDead)
+                return;
+
             Instance.paused = value;
             Cursor.visible = value;
 
@@ -28,11 +33,21 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-	void Awake()
-	{
-		Instance = this;
+    void OnEnable()
+    {
+        Player.EOnPlayerDeath += PlayerIsDead;
+    }
+
+    void OnDisable()
+    {
+        Player.EOnPlayerDeath -= PlayerIsDead;
+    }
+
+    void Awake()
+    {
+        Instance = this;
         Cursor.visible = false;
-	}
+    }
 
     void Update()
     {
@@ -50,5 +65,11 @@ public class PauseMenu : MonoBehaviour
     public void PressExit()
     {
         Application.Quit();
+    }
+
+    void PlayerIsDead()
+    {
+        playerDead = true;
+        Cursor.visible = true;
     }
 }

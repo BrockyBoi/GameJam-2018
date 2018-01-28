@@ -7,9 +7,10 @@ using UnityEngine.AI;
 public class Alien : OriginalObject<LocationData>
 {
     #region Variables
+    private static event DelegateManager.VecVoid EOnAttracted;
     NavMeshAgent agent;
     Rigidbody rb;
-    enum States { Searching, PlayerInSight, PlayerNoLongerInSight, PlayerDead }
+    enum States { Searching, PlayerInSight, PlayerNoLongerInSight, PlayerDead, AttractedToNoise }
     States state = States.Searching;
 
     PathNode currentNode;
@@ -42,12 +43,22 @@ public class Alien : OriginalObject<LocationData>
         }
     }
 
+    bool InRangeOfNoise
+    {
+        get
+        {
+            return Vector3.Distance(transform.position, noiseAttractionSpot) <= 2;
+        }
+    }
+
     float timeNotSeenPlayer = 0;
     Vector3 lastPlayerPos;
     float lastTimePlayedAudio = 0;
     new AudioSource audio;
     [SerializeField]
     AudioClip roarClip, gargleClip, dunDunClip;
+
+    static Vector3 noiseAttractionSpot;
     #endregion
 
     void Awake()
@@ -86,7 +97,6 @@ public class Alien : OriginalObject<LocationData>
 
                     if (InRangeOfPlayer)
                     {
-                        Debug.Log("In range of player");
                         state = States.PlayerDead;
                         Player.Instance.KillPlayer();
                         return;
@@ -97,27 +107,22 @@ public class Alien : OriginalObject<LocationData>
                         lastPlayerPos = playerPos;
                         state = States.PlayerNoLongerInSight;
                         agent.speed = searchSpeed;
+                        agent.SetDestination(lastPlayerPos);
                     }
                     break;
                 }
             case States.PlayerNoLongerInSight:
                 {
                     timeNotSeenPlayer += Time.deltaTime;
-                    agent.SetDestination(lastPlayerPos);
+
 
                     if (PlayerInSight())
                     {
-                        state = States.PlayerInSight;
-                        agent.speed = runSpeed;
-                        timeNotSeenPlayer = 0;
+                        ChasePlayer();
                     }
                     if (timeNotSeenPlayer > 3.5f)
                     {
-                        state = States.Searching;
-                        agent.speed = searchSpeed;
-                        timeNotSeenPlayer = 0;
-                        lastTimePlayedAudio = 0;
-                        fov = 60;
+                        StartSearch();
                     }
                     break;
                 }
@@ -135,36 +140,93 @@ public class Alien : OriginalObject<LocationData>
 
                     if (PlayerInSight())
                     {
-                        audio.Stop();
-                        audio.PlayOneShot(dunDunClip);
-
-
-                        currentNode = null;
-                        state = States.PlayerInSight;
-                        agent.speed = runSpeed;
-                        fov = 75;
+                        ChasePlayer();
                     }
 
-                    lastTimePlayedAudio += Time.deltaTime;
-
-                    if (lastTimePlayedAudio > 15)
-                    {
-                        if (Random.value < .5f)
-                        {
-                            audio.PlayOneShot(gargleClip);
-                        }
-                        else
-                        {
-                            audio.PlayOneShot(roarClip);
-                        }
-
-                        lastTimePlayedAudio = 0;
-                    }
+                    CheckPlayRandomAudio();
                     break;
                 }
             case States.PlayerDead:
                 return;
+            case States.AttractedToNoise:
+                {
+                    if (PlayerInSight())
+                    {
+                        ChasePlayer();
+                    }
+
+                    if (InRangeOfNoise)
+                    {
+                        Invoke("PickNode", 3);
+                    }
+                    break;
+                }
         }
+    }
+
+    void StartSearch()
+    {
+        state = States.Searching;
+        agent.speed = searchSpeed;
+        timeNotSeenPlayer = 0;
+        lastTimePlayedAudio = 0;
+        fov = 60;
+    }
+
+    void ChasePlayer()
+    {
+        CancelInvoke("PickNode");
+        audio.Stop();
+        audio.PlayOneShot(dunDunClip);
+
+        currentNode = null;
+        state = States.PlayerInSight;
+        agent.speed = runSpeed;
+        fov = 75;
+        timeNotSeenPlayer = 0;
+    }
+
+    void CheckPlayRandomAudio()
+    {
+        lastTimePlayedAudio += Time.deltaTime;
+
+        if (lastTimePlayedAudio > 15)
+        {
+            if (Random.value < .5f)
+            {
+                audio.PlayOneShot(gargleClip);
+            }
+            else
+            {
+                audio.PlayOneShot(roarClip);
+            }
+
+            lastTimePlayedAudio = 0;
+        }
+    }
+
+    public static void AttractAliens(Vector3 spot)
+    {
+        if (EOnAttracted != null)
+            EOnAttracted(spot);
+    }
+
+    void OnEnable()
+    {
+        EOnAttracted += MoveToAttractionSpot;
+    }
+
+    void OnDisable()
+    {
+        EOnAttracted -= MoveToAttractionSpot;
+    }
+
+    void MoveToAttractionSpot(Vector3 spot)
+    {
+        noiseAttractionSpot = spot;
+        agent.speed = runSpeed;
+        state = States.AttractedToNoise;
+        agent.SetDestination(spot);
     }
 
     bool PlayerInSight()

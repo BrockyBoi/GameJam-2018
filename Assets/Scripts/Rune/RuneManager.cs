@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class RuneManager : MonoBehaviour
 {
+	[SerializeField]
+	List<GameObject> lights;
+	int numCorrect = 0;
 	static RuneManager instance;
 	static RuneManager Instance
 	{
@@ -32,6 +35,7 @@ public class RuneManager : MonoBehaviour
 
     void Awake()
     {
+		instance = this;
         runeKey = new Dictionary<int, RuneStation.Colors>();
         // initialize runekey randomly
         RuneStation.Colors[] c = { RuneStation.Colors.Blue, RuneStation.Colors.Red, RuneStation.Colors.NeonGreen, RuneStation.Colors.Purple };
@@ -46,5 +50,12 @@ public class RuneManager : MonoBehaviour
         }
 
     }
+
+	public static void CorrectbuttonPressed() {
+		Debug.Log("borock dic");
+		Instance.lights[Instance.numCorrect].GetComponent<MeshRenderer>().material = Resources.Load("Materials/Lights/GreenLight") as Material;
+		Instance.numCorrect ++;
+		// open door?
+	}
 
 }

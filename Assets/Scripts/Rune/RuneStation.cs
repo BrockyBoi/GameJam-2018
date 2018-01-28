@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RuneStation : MonoBehaviour {
 
+	public bool correctButtonPressed = false;
 	static int numStations = 0;
 	int stationIndex;
 	[SerializeField]
@@ -22,7 +23,6 @@ public class RuneStation : MonoBehaviour {
 		correctColor = RuneManager.RuneKey[stationIndex];
 		// assign correct material by asking RuneManager which rune to use
 		runeMat = Resources.Load ("Materials/Runes/Rune"+stationIndex) as Material;
-		Debug.Log(runeMat);
 		transform.Find("Rune").GetComponent<MeshRenderer>().material = runeMat;
 	}
 

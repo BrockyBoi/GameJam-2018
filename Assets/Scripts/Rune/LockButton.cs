@@ -17,6 +17,8 @@ public class LockButton : MonoBehaviour
         station = GetComponentInParent<RuneStation>();
 
         success += LockManager.CorrectButtonPressed;
+        success += delegate { if (!station.correctButtonPressed) { RuneManager.CorrectbuttonPressed();} };
+        success += () => station.correctButtonPressed = true;
         failure += AlienSpawner.SpawnAlien;
     }
 
@@ -38,7 +40,7 @@ public class LockButton : MonoBehaviour
             currTime += Time.deltaTime;
             yield return null;
         }
-		transform.localPosition = endPos;
+        transform.localPosition = endPos;
 
         currTime = 0;
 
@@ -48,7 +50,7 @@ public class LockButton : MonoBehaviour
             currTime += Time.deltaTime;
             yield return null;
         }
-		transform.localPosition = startPos;
+        transform.localPosition = startPos;
         animating = false;
     }
 }

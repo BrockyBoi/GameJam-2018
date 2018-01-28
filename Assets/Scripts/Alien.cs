@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(AudioSource))]
-public class Alien : MonoBehaviour
+public class Alien : OriginalObject<LocationData>
 {
     #region Variables
     NavMeshAgent agent;
@@ -67,9 +67,10 @@ public class Alien : MonoBehaviour
         agent.SetDestination(currentNode.transform.position);
     }
 
-    void LateUpdate()
+    protected override void Update()
     {
         DetermineAction();
+        base.Update();
     }
 
     void DetermineAction()
@@ -172,5 +173,10 @@ public class Alien : MonoBehaviour
         }
 
         return false;
+    }
+
+        protected override void AddData()
+    {
+        EnqueueData(new LocationData(transform.position, transform.rotation));
     }
 }

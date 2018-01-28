@@ -6,7 +6,7 @@ public abstract class OriginalObject<T> : MonoBehaviour {
 
 	Queue<T> objectData = new Queue<T>();
 
-	protected void FixedUpdate () 
+	protected virtual void Update () 
 	{
 		AddData();
 	}

@@ -4595,7 +4595,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -4620,8 +4620,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceptableNodeRange: 2
-  searchSpeed: 50
-  runSpeed: 100
+  searchSpeed: 5
+  runSpeed: 15
   roarClip: {fileID: 8300000, guid: 0c6f0bde34651cc49a45b2e9a0ef8a1c, type: 3}
   gargleClip: {fileID: 8300000, guid: c0a6d200290ae4d4c9e364903be2d942, type: 3}
   dunDunClip: {fileID: 8300000, guid: 20a7954734e33bf44a43a4d07c0775cd, type: 3}
@@ -4634,7 +4634,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 8
   m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 120

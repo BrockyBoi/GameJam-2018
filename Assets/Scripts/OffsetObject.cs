@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class OffsetObject<T, R> : MonoBehaviour where T : OriginalObject<R>
 {
 	#region Variables
-	public static readonly Vector3 MAP_OFFSET = new Vector3(0, 0, 50f);
+	protected Vector3 MAP_OFFSET;
     [SerializeField]
     [Range(1, 10)]
     int secondsOff = 5;
@@ -18,10 +18,11 @@ public abstract class OffsetObject<T, R> : MonoBehaviour where T : OriginalObjec
 
     protected void Start()
     {
+        MAP_OFFSET = transform.position - original.transform.position;
         Invoke("SetIsReady", secondsOff);
     }
 
-    protected void FixedUpdate()
+    protected void Update()
     {
         if (!isReady)
             return;

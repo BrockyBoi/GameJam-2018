@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class RuneStation : MonoBehaviour {
 
+	static int numStations = 0;
+	int stationIndex;
 	[SerializeField]
 	Material runeMat;
 	public enum Colors{Red, Blue, NeonGreen, Purple}
 
-	[SerializeField]
 	Colors correctColor;
+
+	void Awake() {
+		stationIndex = numStations;
+		numStations ++;
+	}
 
 	void Start()
 	{
+		correctColor = RuneManager.runeKey[stationIndex];
+		// assign correct material by asking RuneManager which rune to use
+		runeMat = Resources.Load ("Materials/Runes/Rune"+stationIndex) as Material;
+		Debug.Log(runeMat);
 		transform.Find("Rune").GetComponent<MeshRenderer>().material = runeMat;
 	}
 

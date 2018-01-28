@@ -163,6 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4431931816216342}
   - component: {fileID: 114633034947750576}
+  - component: {fileID: 114505349951478620}
   m_Layer: 0
   m_Name: Rune 5
   m_TagString: Untagged
@@ -617,6 +618,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1040295817272198}
   m_Mesh: {fileID: 4300000, guid: 363808f7efc4cf84ebcac4ecd0553fb2, type: 3}
+--- !u!114 &114505349951478620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1951140272358918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6724947e6b2824992638272fd9ee5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 100
+  rotatePoint: {fileID: 4671479084368004}
 --- !u!114 &114633034947750576
 MonoBehaviour:
   m_ObjectHideFlags: 1

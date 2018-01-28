@@ -101,6 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4001246670617018}
   - component: {fileID: 114823358195618880}
+  - component: {fileID: 114318640787331542}
   m_Layer: 0
   m_Name: Rune 1
   m_TagString: Untagged
@@ -314,6 +315,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1300018681686850}
   m_Mesh: {fileID: 4300004, guid: e9f364a60c0d5ca4fa3153872d0d89d0, type: 3}
+--- !u!114 &114318640787331542
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1758633914245426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6724947e6b2824992638272fd9ee5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 100
+  rotatePoint: {fileID: 4638421762318040}
 --- !u!114 &114823358195618880
 MonoBehaviour:
   m_ObjectHideFlags: 1

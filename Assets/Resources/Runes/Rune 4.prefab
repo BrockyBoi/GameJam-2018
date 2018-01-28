@@ -148,6 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4381239438901524}
   - component: {fileID: 114824689671775530}
+  - component: {fileID: 114957280121365356}
   m_Layer: 0
   m_Name: Rune 4
   m_TagString: Untagged
@@ -626,6 +627,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d1fbb05dd869904184d7d5fe6b9b240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 100
+  rotatePoint: {fileID: 4599632595182636}
+--- !u!114 &114957280121365356
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1726724208951640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6724947e6b2824992638272fd9ee5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 100

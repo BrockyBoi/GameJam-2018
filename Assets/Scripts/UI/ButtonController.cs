@@ -34,7 +34,7 @@ public class ButtonController : MonoBehaviour {
 	}
 
 	public void Reset() {
-		Application.LoadLevel(Application.loadedLevel);
+		UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
 	}
 
 	public void Exit() {

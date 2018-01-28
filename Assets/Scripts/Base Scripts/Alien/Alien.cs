@@ -9,7 +9,7 @@ public class Alien : OriginalObject<LocationData>
     #region Variables
     NavMeshAgent agent;
     Rigidbody rb;
-    enum States { Searching, PlayerInSight, PlayerNoLongerInSight, }
+    enum States { Searching, PlayerInSight, PlayerNoLongerInSight, PlayerDead }
     States state = States.Searching;
 
     PathNode currentNode;
@@ -82,6 +82,13 @@ public class Alien : OriginalObject<LocationData>
                     Vector3 playerPos = Player.Instance.transform.position;
                     agent.SetDestination(playerPos);
 
+                    if (InRangeOfPlayer)
+                    {
+                        state = States.PlayerDead;
+                        Player.Instance.KillPlayer();
+                        return;
+                    }
+
                     if (!PlayerInSight())
                     {
                         lastPlayerPos = playerPos;
@@ -151,6 +158,8 @@ public class Alien : OriginalObject<LocationData>
                     }
                     break;
                 }
+            case States.PlayerDead:
+                return;
         }
     }
 
@@ -175,7 +184,7 @@ public class Alien : OriginalObject<LocationData>
         return false;
     }
 
-        protected override void AddData()
+    protected override void AddData()
     {
         EnqueueData(new LocationData(transform.position, transform.rotation));
     }

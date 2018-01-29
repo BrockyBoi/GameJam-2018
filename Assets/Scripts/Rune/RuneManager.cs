@@ -32,10 +32,10 @@ public class RuneManager : MonoBehaviour
         Player.EOnPlayerDeath -= ClearDict;
     }
 
-    void ClearDict()
+    public static void ClearDict()
     {
         Instance.runeKey.Clear();
-		RuneStation.numStations = 0;
+        RuneStation.numStations = 0;
     }
     Dictionary<int, RuneStation.Colors> runeKey;
     public static Dictionary<int, RuneStation.Colors> RuneKey
@@ -47,6 +47,18 @@ public class RuneManager : MonoBehaviour
         set
         {
             Instance.runeKey = value;
+        }
+    }
+    HashSet<int> accessedKeys = new HashSet<int>();
+    public static HashSet<int> AccessedKeys
+    {
+        get
+        {
+            return Instance.accessedKeys;
+        }
+        set
+        {
+            Instance.accessedKeys = value;
         }
     }
     // Use this for initialization
@@ -79,6 +91,18 @@ public class RuneManager : MonoBehaviour
             Debug.Log("raisin da dor");
             Instance.door.transform.Translate(0, 0, 5);
         }
+    }
+
+    public static StationData GetRandomRune()
+    {
+        int randomNum = Random.Range(0, RuneStation.numStations);
+        while (AccessedKeys.Contains(randomNum))
+        {
+            randomNum = Random.Range(0, RuneStation.numStations);
+        }
+
+        AccessedKeys.Add(randomNum);
+        return new StationData(randomNum +1, RuneKey[randomNum]); 
     }
 
 }

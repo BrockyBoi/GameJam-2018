@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour {
 
 	public void PressPlay()
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene("Alien Test Scene");
+		UnityEngine.SceneManagement.SceneManager.LoadScene(1);
 	}
 
 	public void PressCredits()

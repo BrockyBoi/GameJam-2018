@@ -19,7 +19,8 @@ public class LockButton : MonoBehaviour
         success += LockManager.CorrectButtonPressed;
         success += delegate { if (!station.correctButtonPressed) { RuneManager.CorrectbuttonPressed();} };
         success += () => station.correctButtonPressed = true;
-        failure += AlienSpawner.SpawnAlien;
+
+        failure += () => Alien.AttractAliens(transform.position);
     }
 
     public void PressButton()

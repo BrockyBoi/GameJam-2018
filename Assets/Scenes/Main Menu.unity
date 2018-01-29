@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 420587398}
   - component: {fileID: 420587397}
   - component: {fileID: 420587396}
+  - component: {fileID: 420587400}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -352,6 +353,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!45 &420587400
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 420587395}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 2f6f4f9fb1a57454886ef63f1ea92dd8, type: 2}
 --- !u!1 &509475984
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,6 +545,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &728061273
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4327693302270338, guid: d9da5f29d1481e740909a04ee90fa397, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -53.60167
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327693302270338, guid: d9da5f29d1481e740909a04ee90fa397, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -8.927208
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327693302270338, guid: d9da5f29d1481e740909a04ee90fa397, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 15.577
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327693302270338, guid: d9da5f29d1481e740909a04ee90fa397, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327693302270338, guid: d9da5f29d1481e740909a04ee90fa397, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327693302270338, guid: d9da5f29d1481e740909a04ee90fa397, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327693302270338, guid: d9da5f29d1481e740909a04ee90fa397, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327693302270338, guid: d9da5f29d1481e740909a04ee90fa397, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d9da5f29d1481e740909a04ee90fa397, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &883994875
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,7 +708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -677,9 +728,15 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Slacker: Derk
+  m_Text: 'Programmer: Derek Strobel
 
-    Perfect Guy Who Actually Did Stuff: Brock "The Dwane Johnson" Soicher'
+    Programmer: Brock Soicher
+
+    Game Design/ Audio FX: Issa Abdel-Mageed
+
+    3D Modeler: Nick Beeson
+
+    Music: Julie McCarthy'
 --- !u!222 &989060811
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -855,7 +912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -875,7 +932,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OH SHIT IS THAT AN ALIEN?
+  m_Text: Ralphie Wants to Play
 --- !u!222 &1148635230
 CanvasRenderer:
   m_ObjectHideFlags: 0

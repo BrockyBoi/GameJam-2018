@@ -19,12 +19,12 @@ public class RuneStation : MonoBehaviour {
 
 	void Start()
 	{
-		// try {
-		correctColor = RuneManager.RuneKey[stationIndex];
-		// } catch (Exception e) {
-		// 	Debug.Log(" i fjck up "+stationIndex);
-		// }
-		GameObject rune = Instantiate(Resources.Load("Runes/Rune " + (stationIndex + 1)) as GameObject, Vector3.zero, Quaternion.identity);
+		//correctColor = RuneManager.RuneKey[stationIndex];
+		StationData data = RuneManager.GetRandomRune();
+
+		correctColor = data.runeColor;
+		GameObject rune = Instantiate(Resources.Load("Runes/Rune " + (data.runeNum)) as GameObject, Vector3.zero, Quaternion.identity);
+		
 		Vector3 scale = rune.transform.localScale;
 		rune.transform.SetParent(transform);
 		rune.transform.localScale = scale;
@@ -45,4 +45,16 @@ public class RuneStation : MonoBehaviour {
 		}
 	}
 
+
 }
+	public struct StationData
+	{
+		public int runeNum;
+		public RuneStation.Colors runeColor;
+
+		public StationData(int rN, RuneStation.Colors rC)
+		{
+			runeNum = rN;
+			runeColor = rC;
+		}
+	}

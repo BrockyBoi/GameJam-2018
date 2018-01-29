@@ -6,10 +6,10 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Tunnel straight
-  m_Shader: {fileID: 13, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: FAKEPLAT2
+  m_Shader: {fileID: 4, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
-  m_LightmapFlags: 0
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -19,21 +19,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 486536b607615dd4a8ba6d13fb013990, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Illum:
-        m_Texture: {fileID: 2800000, guid: 0eca9f034ff685b4799a03cb23885d0a, type: 3}
+        m_Texture: {fileID: 2800000, guid: bbed095d850d72a4abec431f9070a482, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 790c6c5761277e249bc3dac62bd7a963, type: 3}
+        m_Texture: {fileID: 2800000, guid: afd16d302c7f96d4496e3dd3d485094a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Emission: -5.3
-    - _EmissionLM: 0
-    - _Shininess: 0.527
+    - _Shininess: 0.311
     m_Colors:
-    - _Color: {r: 0.17160468, g: 0.21323532, b: 0.15835857, a: 1}
+    - _Color: {r: 0.30180767, g: 0.53676474, b: 0.20918038, a: 1}
     - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

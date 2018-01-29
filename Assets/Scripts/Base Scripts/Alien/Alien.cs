@@ -55,8 +55,9 @@ public class Alien : OriginalObject<LocationData>
     Vector3 lastPlayerPos;
     float lastTimePlayedAudio = 0;
     new AudioSource audio;
+
     [SerializeField]
-    AudioClip roarClip, gargleClip, dunDunClip;
+    AudioClip roarClip, gargleClip, dunDunClip, scratch, clicky, otherRoar;
 
     static Vector3 noiseAttractionSpot;
     #endregion
@@ -76,6 +77,7 @@ public class Alien : OriginalObject<LocationData>
 
     void PickNode()
     {
+        state = States.Searching;
         currentNode = PathNode.RandomNode;
         agent.SetDestination(currentNode.transform.position);
     }
@@ -191,13 +193,26 @@ public class Alien : OriginalObject<LocationData>
 
         if (lastTimePlayedAudio > 15)
         {
-            if (Random.value < .5f)
+            float value = Random.value;
+            if (value < .2f)
             {
                 audio.PlayOneShot(gargleClip);
             }
-            else
+            else if(value < .4f)
             {
                 audio.PlayOneShot(roarClip);
+            }
+            else if(value < .6f)
+            {
+                audio.PlayOneShot(scratch);
+            }
+            else if(value < .8f)
+            {
+                audio.PlayOneShot(otherRoar);
+            }
+            else
+            {
+                audio.PlayOneShot(clicky);
             }
 
             lastTimePlayedAudio = 0;
@@ -223,8 +238,8 @@ public class Alien : OriginalObject<LocationData>
     void MoveToAttractionSpot(Vector3 spot)
     {
         noiseAttractionSpot = spot;
-        agent.speed = runSpeed;
         state = States.AttractedToNoise;
+        fov = 90;
         agent.SetDestination(spot);
     }
 

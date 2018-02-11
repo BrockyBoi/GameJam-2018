@@ -1,16 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public abstract class OffsetObject<T, R> : MonoBehaviour where T : OriginalObject<R>
 {
     #region Variables
-    protected Vector3 MAP_OFFSET;
 
     public static int SecondsOff = 3;
 
-    [SerializeField]
-    T original;
+    protected T original;
 
     bool isReady = false;
     #endregion
@@ -27,9 +26,8 @@ public abstract class OffsetObject<T, R> : MonoBehaviour where T : OriginalObjec
         PauseMenu.EOnPause -= StopWait;
     }
 
-    protected void Start()
+    protected virtual void Start()
     {
-        MAP_OFFSET = transform.position - original.transform.position;
         WaitForData();
     }
 

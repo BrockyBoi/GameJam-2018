@@ -828,6 +828,9 @@ GameObject:
   - component: {fileID: 195372507986200112}
   - component: {fileID: 114326837917300832}
   - component: {fileID: 82980366452818404}
+  - component: {fileID: 136968041086863278}
+  - component: {fileID: 114749980630411386}
+  - component: {fileID: 114439182571082310}
   m_Layer: 0
   m_Name: Alien
   m_TagString: Untagged
@@ -2105,8 +2108,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1601602969543324}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.59, y: 1.437, z: 16.35023}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10.7, y: -12.391, z: 68.9}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 4866213324227242}
@@ -4546,11 +4549,11 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  DopplerLevel: 0
+  MinDistance: 0
+  MaxDistance: 23.6
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -4559,19 +4562,31 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 1
+      value: 1.0036926
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
+      time: 0.26176536
+      value: 0.3262508
+      inSlope: -1.2084842
+      outSlope: -1.2084842
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.9047463
+      value: 0.06477982
+      inSlope: -0.013224781
+      outSlope: -0.013224781
+      tangentMode: 0
+    - serializedVersion: 2
       time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: 0.003692627
+      inSlope: -1
+      outSlope: -1
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -4589,7 +4604,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0
+      value: 0.011111111
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4601,7 +4616,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 1
+      value: 1.1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4625,6 +4640,75 @@ MonoBehaviour:
   roarClip: {fileID: 8300000, guid: 0c6f0bde34651cc49a45b2e9a0ef8a1c, type: 3}
   gargleClip: {fileID: 8300000, guid: c0a6d200290ae4d4c9e364903be2d942, type: 3}
   dunDunClip: {fileID: 8300000, guid: 20a7954734e33bf44a43a4d07c0775cd, type: 3}
+  scratch: {fileID: 8300000, guid: a434710ce09ac3148a5141109eb2c2a2, type: 3}
+  clicky: {fileID: 8300000, guid: 931b9c6a183b06148a2bb6ce4e6580ea, type: 3}
+  otherRoar: {fileID: 8300000, guid: 6ea59639275abb24d8fa807d447e2fe8, type: 3}
+--- !u!114 &114439182571082310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1601602969543324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 2
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &114749980630411386
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1601602969543324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 186
+    i1: 13
+    i2: 77
+    i3: 67
+    i4: 209
+    i5: 48
+    i6: 68
+    i7: 25
+    i8: 170
+    i9: 220
+    i10: 181
+    i11: 35
+    i12: 139
+    i13: 84
+    i14: 119
+    i15: 217
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
+--- !u!136 &136968041086863278
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1601602969543324}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.57083446
+  m_Height: 1.63
+  m_Direction: 1
+  m_Center: {x: 0.07083442, y: 0.88, z: 0}
 --- !u!195 &195372507986200112
 NavMeshAgent:
   m_ObjectHideFlags: 1

@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class Alien : OriginalObject<LocationData>
 {
     #region Variables
+    public static Alien Instance{get; private set;}
     private static event DelegateManager.VecVoid EOnAttracted;
     NavMeshAgent agent;
     Rigidbody rb;
@@ -67,6 +68,7 @@ public class Alien : OriginalObject<LocationData>
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
         audio = GetComponent<AudioSource>();
+        Instance = this;
     }
 
     void Start()
@@ -84,6 +86,9 @@ public class Alien : OriginalObject<LocationData>
 
     void LateUpdate()
     {
+        if (!Player.PlayerSpawned)
+            return;
+
         DetermineAction();
     }
 
@@ -198,15 +203,15 @@ public class Alien : OriginalObject<LocationData>
             {
                 audio.PlayOneShot(gargleClip);
             }
-            else if(value < .4f)
+            else if (value < .4f)
             {
                 audio.PlayOneShot(roarClip);
             }
-            else if(value < .6f)
+            else if (value < .6f)
             {
                 audio.PlayOneShot(scratch);
             }
-            else if(value < .8f)
+            else if (value < .8f)
             {
                 audio.PlayOneShot(otherRoar);
             }
@@ -266,12 +271,12 @@ public class Alien : OriginalObject<LocationData>
 
     protected override void AddData()
     {
-        EnqueueData(new LocationData(transform.position, transform.rotation));
+        EnqueueData(new LocationData(transform));
     }
 
     void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
             Player.Instance.KillPlayer();
             state = States.PlayerDead;

@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class FPSController : MonoBehaviour
+public class FPSController : NetworkBehaviour
 {
     [SerializeField]
     protected Camera camera;
